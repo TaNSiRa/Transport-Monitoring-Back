@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { internalRouter } from './routes/internal.js';
 import { gpsRouter } from './routes/gps.js';
 
-const PORT = Number(process.env.PORT ?? 4000);
+const PORT = Number(process.env.PORT ?? 4001);
 
 const app = express();
 app.use(cors());
