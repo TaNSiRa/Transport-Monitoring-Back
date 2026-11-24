@@ -7,14 +7,15 @@
 // from the mockup; customers are the plan day's delivery locations with the
 // positions and radii in the customer master.
 
+import { config } from '../config.js';
 import * as siamgps from '../siamgps/client.js';
 import { resolve } from '../siamgps/source.js';
 import { demoCustomers, demoTracks, demoRealtimeList, localMidnight } from '../siamgps/demo.js';
 import { onMasterChange } from '../master/store.js';
 import { findStops, customerStatus } from './detect.js';
 
-export const DWELL_MIN = Number(process.env.GEOFENCE_DWELL_MIN ?? 10);
-const CACHE_MS = Number(process.env.GEOFENCE_CACHE_MS ?? 20_000);
+export const DWELL_MIN = config.geofence.dwellMin;
+const CACHE_MS = config.geofence.cacheMs;
 
 let cache = null; // { at, value }
 onMasterChange(() => {

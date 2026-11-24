@@ -1,3 +1,5 @@
+// Must be the first import: it loads backend/.env before any module reads it.
+import { config } from './config.js';
 import express from 'express';
 import cors from 'cors';
 import fs from 'node:fs';
@@ -6,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { internalRouter } from './routes/internal.js';
 import { gpsRouter } from './routes/gps.js';
 
-const PORT = Number(process.env.PORT ?? 4001);
+const PORT = config.port;
 
 const app = express();
 app.use(cors());

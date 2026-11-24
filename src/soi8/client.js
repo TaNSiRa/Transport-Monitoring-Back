@@ -9,9 +9,11 @@
 // No login is needed for this endpoint. It hits SAP on every call, so callers
 // should cache (routes/internal.js does).
 
+import { config } from '../config.js';
+
 export const SOI8 = {
-  base: process.env.SOI8_API_BASE ?? 'http://172.23.10.168:12130',
-  timeoutMs: Number(process.env.SOI8_TIMEOUT_MS ?? 30_000),
+  base: config.soi8.base,
+  timeoutMs: config.soi8.timeoutMs,
 };
 
 export class Soi8Error extends Error {

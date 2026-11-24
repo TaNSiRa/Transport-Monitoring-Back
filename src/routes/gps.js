@@ -10,6 +10,7 @@
 //   at        when this answer was produced
 
 import { Router } from 'express';
+import { config } from '../config.js';
 import * as siamgps from '../siamgps/client.js';
 import { SIAMGPS, SiamGpsError, PLAYBACK_MAX_MS } from '../siamgps/client.js';
 import { demoVehicles, demoRealtimeList, demoPlayback } from '../siamgps/demo.js';
@@ -19,7 +20,7 @@ import { today } from '../geofence/today.js';
 export const gpsRouter = Router();
 
 // Every open dashboard polls; one upstream call per window serves all of them.
-const REALTIME_CACHE_MS = Number(process.env.SIAMGPS_REALTIME_CACHE_MS ?? 8000);
+const REALTIME_CACHE_MS = config.siamgps.realtimeCacheMs;
 let realtimeCache = null; // { at, payload }
 
 function fail(res, e) {

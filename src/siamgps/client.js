@@ -13,10 +13,12 @@
 // models parse exactly what the doc describes, so the mockup and the real feed
 // are the same code path.
 
+import { config } from '../config.js';
+
 export const SIAMGPS = {
-  base: process.env.SIAMGPS_BASE ?? 'https://services.siamgpstrack.com',
-  token: (process.env.SIAMGPS_TOKEN ?? '').trim(),
-  timeoutMs: Number(process.env.SIAMGPS_TIMEOUT_MS ?? 10_000),
+  base: config.siamgps.base,
+  token: config.siamgps.token,
+  timeoutMs: config.siamgps.timeoutMs,
 };
 
 /** Playback refuses windows longer than this (doc p.27: "ไม่เกิน 3 วัน"). */

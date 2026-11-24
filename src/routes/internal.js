@@ -2,6 +2,7 @@
 // The Flutter dashboard is the only client. Nothing on the internet may reach it.
 
 import { Router } from 'express';
+import { config } from '../config.js';
 import { fetchDeliveries } from '../soi8/client.js';
 import { overviewSteps } from '../soi8/overview.js';
 import { today } from '../geofence/today.js';
@@ -22,7 +23,7 @@ function todayISO(d = new Date()) {
 
 // SOI8 reads SAP on every call; every open screen (3D and card view alike)
 // shares one call per window and date.
-const SOI8_CACHE_MS = Number(process.env.SOI8_CACHE_MS ?? 20_000);
+const SOI8_CACHE_MS = config.soi8.cacheMs;
 const soi8Cache = new Map(); // date -> { at, rows }
 const SOI8_CACHE_DAYS = 4; // today plus a few days someone paged back to
 

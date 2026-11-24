@@ -3,9 +3,11 @@
 //
 //   SIAMGPS_MODE=live -> always SIAMGPS, surface errors
 //   SIAMGPS_MODE=demo -> never call SIAMGPS (the mockup)
-//   SIAMGPS_MODE=auto -> try SIAMGPS, fall back to the mockup (default)
+//   SIAMGPS_MODE=auto -> try SIAMGPS, fall back to the mockup
 
-export const MODE = process.env.SIAMGPS_MODE ?? 'auto';
+import { config } from '../config.js';
+
+export const MODE = config.siamgps.mode;
 
 export let lastUpstream = { ok: null, status: null, message: null, at: null };
 
