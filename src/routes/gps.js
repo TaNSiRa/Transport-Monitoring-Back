@@ -1,169 +1,150 @@
-// GPS tracking, proxied from Protrack365.
+// GPS tracking, proxied from the SIAMGPS Public API (Rev 1.2.2).
 //
-// Mounted under /internal because it belongs to the office dashboard, not to
-// the driver relay. The browser never sees the Protrack password or token —
-// it only ever talks to this router.
+// Mounted under /internal because it belongs to the office dashboard. The
+// browser never sees the SIAMGPS token — it only ever talks to this router.
+//
+// Every response is SIAMGPS's own envelope ({ status, totalRecord, data, … })
+// plus three fields of ours:
+//   source    "live" | "demo"  — the page shows a badge for demo data
+//   fallback  why we fell back to the mockup, or null
+//   at        when this answer was produced
 
 import { Router } from 'express';
-import * as protrack from '../protrack/client.js';
-import { PROTRACK, ProtrackError } from '../protrack/client.js';
-import { DEMO_DEVICES, demoTrack, demoPlayback } from '../protrack/demo.js';
+import * as siamgps from '../siamgps/client.js';
+import { SIAMGPS, SiamGpsError, PLAYBACK_MAX_MS } from '../siamgps/client.js';
+import { demoVehicles, demoRealtimeList, demoPlayback } from '../siamgps/demo.js';
+import { MODE, lastUpstream, resolve } from '../siamgps/source.js';
+import { today } from '../geofence/today.js';
 
 export const gpsRouter = Router();
 
-// live -> always Protrack, surface errors.
-// demo -> never call Protrack.
-// auto -> try Protrack, fall back to the simulator so the page still works.
-const MODE = process.env.PROTRACK_MODE ?? 'auto';
-
-// Protrack answers 10009 when called too often, and every open dashboard tab
-// polls. One upstream call per window serves all of them.
-const TRACK_CACHE_MS = Number(process.env.PROTRACK_TRACK_CACHE_MS ?? 8000);
-let trackCache = null; // { key, at, payload }
-
-/** What the last upstream attempt told us — shown in the page's footer. */
-let lastUpstream = { ok: null, code: null, message: null, at: null };
-
-function noteUpstream(error) {
-  lastUpstream = {
-    ok: !error,
-    code: error?.code ?? null,
-    message: error?.message ?? null,
-    at: new Date().toISOString(),
-  };
-}
-
-/**
- * Runs [live], and on failure decides whether the simulator may answer.
- * A provisioning problem (10007 / 10013) is exactly the case the fallback
- * exists for; anything else in `live` mode is a real error and propagates.
- */
-async function resolve(live, demo) {
-  if (MODE === 'demo') return { source: 'demo', data: demo() };
-  try {
-    const data = await live();
-    noteUpstream(null);
-    return { source: 'live', data };
-  } catch (e) {
-    noteUpstream(e);
-    if (MODE === 'live') throw e;
-    return {
-      source: 'demo',
-      data: demo(),
-      fallback: { code: e.code ?? null, message: e.message },
-    };
-  }
-}
+// Every open dashboard polls; one upstream call per window serves all of them.
+const REALTIME_CACHE_MS = Number(process.env.SIAMGPS_REALTIME_CACHE_MS ?? 8000);
+let realtimeCache = null; // { at, payload }
 
 function fail(res, e) {
-  if (e instanceof ProtrackError) {
-    return res.status(e.needsProvisioning ? 403 : 502).json({
-      error: 'PROTRACK',
-      code: e.code,
+  if (e instanceof SiamGpsError) {
+    return res.status(e.needsSetup ? 403 : 502).json({
+      error: 'SIAMGPS',
+      code: e.status,
       message: e.message,
     });
   }
   return res.status(500).json({ error: 'INTERNAL', message: e.message });
 }
 
-/** Which devices this account can see. */
-gpsRouter.get('/devices', async (_req, res) => {
+const envelope = ({ source, data, fallback }) => ({
+  source,
+  fallback,
+  at: new Date().toISOString(),
+  ...data,
+});
+
+/** GET /vehicles — the organisation's vehicle list. */
+gpsRouter.get('/vehicles', async (_req, res) => {
   try {
-    const { source, data, fallback } = await resolve(
-      () => protrack.deviceList(),
-      () => DEMO_DEVICES,
-    );
-    res.json({ source, fallback: fallback ?? null, devices: data });
+    res.json(envelope(await resolve(() => siamgps.vehicles(), () => demoVehicles())));
   } catch (e) {
     fail(res, e);
   }
 });
 
-/** The latest fix per device — this is what the map polls. */
-gpsRouter.get('/track', async (req, res) => {
-  const imeis = String(req.query.imeis ?? '')
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean);
-  const wanted = imeis.length ? imeis : PROTRACK.imeis;
-
-  if (wanted.length === 0) {
-    return res.status(400).json({ error: 'NO_IMEI', message: 'ต้องระบุ imeis อย่างน้อยหนึ่งเครื่อง' });
+/** GET /realtime/list — latest record of every vehicle. This is what the map polls. */
+gpsRouter.get('/realtime', async (_req, res) => {
+  if (realtimeCache && Date.now() - realtimeCache.at < REALTIME_CACHE_MS) {
+    return res.json({ ...realtimeCache.payload, cached: true });
   }
-  if (wanted.length > 100) {
-    return res.status(400).json({ error: 'TOO_MANY', message: 'ขอได้สูงสุด 100 IMEI ต่อครั้ง' });
-  }
-
-  const key = wanted.join(',');
-  if (trackCache && trackCache.key === key && Date.now() - trackCache.at < TRACK_CACHE_MS) {
-    return res.json({ ...trackCache.payload, cached: true });
-  }
-
   try {
-    const { source, data, fallback } = await resolve(
-      () => protrack.track(wanted),
-      () => demoTrack(wanted),
+    const payload = envelope(
+      await resolve(() => siamgps.realtimeList(), () => demoRealtimeList()),
     );
-    const payload = {
-      source,
-      fallback: fallback ?? null,
-      at: new Date().toISOString(),
-      fixes: data,
-    };
-    trackCache = { key, at: Date.now(), payload };
+    realtimeCache = { at: Date.now(), payload };
     res.json({ ...payload, cached: false });
   } catch (e) {
     fail(res, e);
   }
 });
 
-/** History for the route line. `from`/`to` accept ISO or unix seconds. */
+/**
+ * GET /playback?vehicleId=&startDate=&endDate=  (ISO 8601 UTC)
+ * History for the route line. SIAMGPS caps the window at 3 days.
+ */
 gpsRouter.get('/playback', async (req, res) => {
-  const imei = String(req.query.imei ?? '').trim() || PROTRACK.imeis[0];
-  if (!imei) return res.status(400).json({ error: 'NO_IMEI', message: 'ต้องระบุ imei' });
-
-  const to = parseTime(req.query.to) ?? Math.floor(Date.now() / 1000);
-  const from = parseTime(req.query.from) ?? to - 6 * 3600;
-  if (from >= to) {
+  const vehicleId = Number(req.query.vehicleId);
+  if (!Number.isInteger(vehicleId) || vehicleId <= 0) {
+    return res.status(400).json({ error: 'NO_VEHICLE', message: 'ต้องระบุ vehicleId' });
+  }
+  const end = parseTime(req.query.endDate) ?? Date.now();
+  const start = parseTime(req.query.startDate) ?? end - 6 * 3600 * 1000;
+  if (start >= end) {
     return res.status(400).json({ error: 'BAD_RANGE', message: 'ช่วงเวลาไม่ถูกต้อง' });
   }
+  if (end - start > PLAYBACK_MAX_MS) {
+    return res
+      .status(400)
+      .json({ error: 'RANGE_TOO_LONG', message: 'ดูย้อนหลังได้ครั้งละไม่เกิน 3 วัน' });
+  }
 
+  const startDate = new Date(start).toISOString();
+  const endDate = new Date(end).toISOString();
   try {
-    const { source, data, fallback } = await resolve(
-      () => protrack.playback(imei, from, to),
-      () => demoPlayback(imei, from, to),
+    res.json(
+      envelope(
+        await resolve(
+          () => siamgps.playback(vehicleId, startDate, endDate),
+          () => demoPlayback(vehicleId, start, end),
+        ),
+      ),
     );
+  } catch (e) {
+    fail(res, e);
+  }
+});
+
+// ── customers + geofence delivery ────────────────────────────────────────────
+//
+// The plan day's delivery locations (positions and radii from the customer
+// master) and today's delivery state per location — see geofence/today.js,
+// which the trips page reads as well.
+
+/** GET /customers — every customer, its radius, and today's delivery state. */
+gpsRouter.get('/customers', async (_req, res) => {
+  try {
+    const t = await today();
+    const count = (s) => t.customers.filter((c) => c.status === s).length;
     res.json({
-      source,
-      fallback: fallback ?? null,
-      imei,
-      from: new Date(from * 1000).toISOString(),
-      to: new Date(to * 1000).toISOString(),
-      // 1000 is the API's page size — say so rather than let the page guess
-      // why a long window looks clipped.
-      truncated: data.length >= 1000,
-      points: data,
+      source: t.source,
+      fallback: t.fallback,
+      at: t.at,
+      since: t.since,
+      dwellMinutes: t.dwellMinutes,
+      customersSource: 'master',
+      summary: {
+        total: t.customers.length,
+        delivered: count('delivered'),
+        dwelling: count('dwelling'),
+        pending: count('pending'),
+      },
+      customers: t.customers,
     });
   } catch (e) {
     fail(res, e);
   }
 });
 
-/** Where the data is coming from, for the banner on the page. */
+/** Where the data is coming from — for debugging the badge on the page. */
 gpsRouter.get('/status', (_req, res) => {
   res.json({
+    provider: 'SIAMGPS Public API rev 1.2.2',
     mode: MODE,
-    account: PROTRACK.account,
-    base: PROTRACK.base,
-    defaultImeis: PROTRACK.imeis,
+    base: SIAMGPS.base,
+    hasToken: SIAMGPS.token.length > 0,
     upstream: lastUpstream,
   });
 });
 
 function parseTime(v) {
   if (v === undefined || v === null || v === '') return null;
-  const n = Number(v);
-  if (Number.isFinite(n) && n > 0) return Math.floor(n);
   const d = Date.parse(String(v));
-  return Number.isNaN(d) ? null : Math.floor(d / 1000);
+  return Number.isNaN(d) ? null : d;
 }

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Mock backend: internal ERP API + cloud relay + outbound-only sync worker",
+  "description": "Office dashboard backend: delivery pipeline mock + SIAMGPS GPS proxy",
   "scripts": {
     "dev": "node --watch --env-file-if-exists=.env src/server.js",
     "start": "node --env-file-if-exists=.env src/server.js"

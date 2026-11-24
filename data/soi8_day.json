@@ -1,0 +1,1026 @@
+{
+ "source": "SOI8_DEL_FNISP_DATA (mot_name <> customer) via SOI8 history export, read-only",
+ "day": "2026-11-13",
+ "fos": [
+  {
+   "foId": "2100025114",
+   "plate": "2ฒง-3854",
+   "driver": "ธนวัฒน์",
+   "mot": "4W (2 Ton) Truck",
+   "carrier": "SIRIPRAKARN TRANSPORT AND SERVICE CO.,LTD.",
+   "route": "อมตะนคร(ชลบุรี)",
+   "locationCode": "11102514",
+   "locationName": "TAKEBE (THAILAND) CO.,LTD.",
+   "customers": [
+    "SANKIN (THAILAND) CO.,LTD.",
+    "SIAM KUBOTA CORPORATION CO.,LTD.",
+    "TAKEBE (THAILAND) CO.,LTD.",
+    "SIAM KEEPER MANUFACTURING CO.,LTD."
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115173",
+     "deliveryNo": "8110031380",
+     "customer": "SANKIN (THAILAND) CO.,LTD.",
+     "qty": 40,
+     "lines": 4
+    },
+    {
+     "invoiceNo": "6913115174",
+     "deliveryNo": "8110031382",
+     "customer": "SIAM KUBOTA CORPORATION CO.,LTD.",
+     "qty": 6,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913115198",
+     "deliveryNo": "8110031428",
+     "customer": "TAKEBE (THAILAND) CO.,LTD.",
+     "qty": 19,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913115211",
+     "deliveryNo": "8110031425",
+     "customer": "SIAM KEEPER MANUFACTURING CO.,LTD.",
+     "qty": 5,
+     "lines": 2
+    }
+   ],
+   "releaseTime": "2026-11-13T07:53:26.000Z"
+  },
+  {
+   "foId": "2100025116",
+   "plate": "2ฒง-3854",
+   "driver": "ธนวัฒน์",
+   "mot": "4W (2 Ton) Truck",
+   "carrier": "SIRIPRAKARN TRANSPORT AND SERVICE CO.,LTD.",
+   "route": "เวลโกร์",
+   "locationCode": "11103291",
+   "locationName": "NHK SPRING (THAILAND) CO., LTD.",
+   "customers": [
+    "NHK SPRING (THAILAND) CO., LTD.",
+    "NEW SOMTHAI MOTOR WORK CO., LTD",
+    "THAI YAMAHA MOTOR CO., LTD."
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115161",
+     "deliveryNo": "8110031417",
+     "customer": "NHK SPRING (THAILAND) CO., LTD.",
+     "qty": 13,
+     "lines": 4
+    },
+    {
+     "invoiceNo": "6913115162",
+     "deliveryNo": "8110031458",
+     "customer": "NHK SPRING (THAILAND) CO., LTD.",
+     "qty": 18,
+     "lines": 3
+    },
+    {
+     "invoiceNo": "6913115164",
+     "deliveryNo": "8110031412",
+     "customer": "NEW SOMTHAI MOTOR WORK CO., LTD",
+     "qty": 28,
+     "lines": 3
+    },
+    {
+     "invoiceNo": "6913115176",
+     "deliveryNo": "8110031396",
+     "customer": "THAI YAMAHA MOTOR CO., LTD.",
+     "qty": 3,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115177",
+     "deliveryNo": "8110031397",
+     "customer": "THAI YAMAHA MOTOR CO., LTD.",
+     "qty": 19,
+     "lines": 6
+    }
+   ],
+   "releaseTime": "2026-11-13T07:53:20.000Z"
+  },
+  {
+   "foId": "2100025121",
+   "plate": "3ฒฆ-9073",
+   "driver": "เกียรติศักดิ์",
+   "mot": "4W (2 Ton) Truck",
+   "carrier": "SIRIPRAKARN TRANSPORT AND SERVICE CO.,LTD.",
+   "route": "เพชรเกษม",
+   "locationCode": "11104485",
+   "locationName": "PROFENDER RACING CO., LTD.",
+   "customers": [
+    "THAI RUNG UNION CAR PUBLIC CO.,LTD.",
+    "PROFENDER RACING CO., LTD.",
+    "IWATANI CORPORATION-SAMUTHSAKORN"
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115204",
+     "deliveryNo": "8110031391",
+     "customer": "THAI RUNG UNION CAR PUBLIC CO.,LTD.",
+     "qty": 54,
+     "lines": 7
+    },
+    {
+     "invoiceNo": "6913115209",
+     "deliveryNo": "8110031431",
+     "customer": "PROFENDER RACING CO., LTD.",
+     "qty": 16,
+     "lines": 4
+    },
+    {
+     "invoiceNo": "6913115212",
+     "deliveryNo": "8110031348",
+     "customer": "IWATANI CORPORATION-SAMUTHSAKORN",
+     "qty": 6,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913115213",
+     "deliveryNo": "8110031349",
+     "customer": "IWATANI CORPORATION-SAMUTHSAKORN",
+     "qty": 2,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115214",
+     "deliveryNo": "8110031350",
+     "customer": "IWATANI CORPORATION-SAMUTHSAKORN",
+     "qty": 4,
+     "lines": 1
+    }
+   ],
+   "releaseTime": "2026-11-13T07:53:39.000Z"
+  },
+  {
+   "foId": "2100025122",
+   "plate": "3ฒฆ-9073",
+   "driver": "เกียรติศักดิ์",
+   "mot": "4W (1 Ton) Truck",
+   "carrier": "SIRIPRAKARN TRANSPORT AND SERVICE CO.,LTD.",
+   "route": "กระทุ่มแบน",
+   "locationCode": "11103036",
+   "locationName": "KIJCHAROEN ENGINEERING ELECTRIC PUBLIC COMPANY LIMITED.",
+   "customers": [
+    "INTER CLUTCH DISC MANUFACTURING CO.,LTD.",
+    "KIJCHAROEN ENGINEERING ELECTRIC PUBLIC COMPANY LIMITED.",
+    "THONGKRUA ENGINEERING CO.,LTD."
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115145",
+     "deliveryNo": "8110031344",
+     "customer": "INTER CLUTCH DISC MANUFACTURING CO.,LTD.",
+     "qty": 8,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913115150",
+     "deliveryNo": "8110031416",
+     "customer": "KIJCHAROEN ENGINEERING ELECTRIC PUBLIC COMPANY LIMITED.",
+     "qty": 20,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115205",
+     "deliveryNo": "8110031398",
+     "customer": "THONGKRUA ENGINEERING CO.,LTD.",
+     "qty": 1,
+     "lines": 1
+    }
+   ],
+   "releaseTime": "2026-11-13T07:53:42.000Z"
+  },
+  {
+   "foId": "2100025106",
+   "plate": "71-1363",
+   "driver": "ต้อยติ่ง",
+   "mot": "6W Truck",
+   "carrier": "SIRIPRAKARN TRANSPORT AND SERVICE CO.,LTD.",
+   "route": "สระบุรี",
+   "locationCode": "11102759",
+   "locationName": "THAI MARUJUN CO.,LTD.",
+   "customers": [
+    "THAI MARUJUN CO.,LTD.",
+    "NEXT CAN INNOVATION CO.,LTD"
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115197",
+     "deliveryNo": "8110031390",
+     "customer": "THAI MARUJUN CO.,LTD.",
+     "qty": 1,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "8110031374",
+     "deliveryNo": "8110031374",
+     "customer": "NEXT CAN INNOVATION CO.,LTD",
+     "qty": 2,
+     "lines": 2
+    }
+   ],
+   "releaseTime": "2026-11-13T07:53:51.000Z"
+  },
+  {
+   "foId": "2100025119",
+   "plate": "71-1363",
+   "driver": "ต้อยติ่ง",
+   "mot": "6W Truck",
+   "carrier": "SIRIPRAKARN TRANSPORT AND SERVICE CO.,LTD.",
+   "route": "สำโรง",
+   "locationCode": "11102552",
+   "locationName": "TOYOTA MOTOR THAILAND CO.,LTD. (SAMRONG)",
+   "customers": [
+    "TOYOTA MOTOR THAILAND CO.,LTD. (SAMRONG)"
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115185",
+     "deliveryNo": "8110031401",
+     "customer": "TOYOTA MOTOR THAILAND CO.,LTD. (SAMRONG)",
+     "qty": 2,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115186",
+     "deliveryNo": "8110031402",
+     "customer": "TOYOTA MOTOR THAILAND CO.,LTD. (SAMRONG)",
+     "qty": 6,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115187",
+     "deliveryNo": "8110031403",
+     "customer": "TOYOTA MOTOR THAILAND CO.,LTD. (SAMRONG)",
+     "qty": 2,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115188",
+     "deliveryNo": "8110031404",
+     "customer": "TOYOTA MOTOR THAILAND CO.,LTD. (SAMRONG)",
+     "qty": 5,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115189",
+     "deliveryNo": "8110031405",
+     "customer": "TOYOTA MOTOR THAILAND CO.,LTD. (SAMRONG)",
+     "qty": 4,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115190",
+     "deliveryNo": "8110031406",
+     "customer": "TOYOTA MOTOR THAILAND CO.,LTD. (SAMRONG)",
+     "qty": 4,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115191",
+     "deliveryNo": "8110031434",
+     "customer": "TOYOTA MOTOR THAILAND CO.,LTD. (SAMRONG)",
+     "qty": 48,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115192",
+     "deliveryNo": "8110031432",
+     "customer": "TOYOTA MOTOR THAILAND CO.,LTD. (SAMRONG)",
+     "qty": 15,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115193",
+     "deliveryNo": "8110031433",
+     "customer": "TOYOTA MOTOR THAILAND CO.,LTD. (SAMRONG)",
+     "qty": 10,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115194",
+     "deliveryNo": "8110031427",
+     "customer": "TOYOTA MOTOR THAILAND CO.,LTD. (SAMRONG)",
+     "qty": 2,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913115195",
+     "deliveryNo": "8110031407",
+     "customer": "TOYOTA MOTOR THAILAND CO.,LTD. (SAMRONG)",
+     "qty": 3,
+     "lines": 1
+    }
+   ],
+   "releaseTime": "2026-11-13T07:53:47.000Z"
+  },
+  {
+   "foId": "2100025118",
+   "plate": "71-7180",
+   "driver": "นายจักรกฤษณ์  ศรีสะอาด",
+   "mot": "6W Truck",
+   "carrier": "TANWASATAPORN TRANSPORT CO.,LTD.",
+   "route": "สำโรง",
+   "locationCode": "11102530",
+   "locationName": "SUMMIT AUTO TECH INDUSTRY CO.,LTD. (SAMUTPRAKARN)",
+   "customers": [
+    "ISUZU MOTORS (THAILAND) CO.,LTD.",
+    "SUMMIT AUTO TECH INDUSTRY CO.,LTD. (SAMUTPRAKARN)"
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115146",
+     "deliveryNo": "8110031345",
+     "customer": "ISUZU MOTORS (THAILAND) CO.,LTD.",
+     "qty": 18,
+     "lines": 4
+    },
+    {
+     "invoiceNo": "6913115147",
+     "deliveryNo": "8110031346",
+     "customer": "ISUZU MOTORS (THAILAND) CO.,LTD.",
+     "qty": 1,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115148",
+     "deliveryNo": "8110031347",
+     "customer": "ISUZU MOTORS (THAILAND) CO.,LTD.",
+     "qty": 66,
+     "lines": 7
+    },
+    {
+     "invoiceNo": "6913115169",
+     "deliveryNo": "8110031418",
+     "customer": "SUMMIT AUTO TECH INDUSTRY CO.,LTD. (SAMUTPRAKARN)",
+     "qty": 20,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913115170",
+     "deliveryNo": "8110031387",
+     "customer": "SUMMIT AUTO TECH INDUSTRY CO.,LTD. (SAMUTPRAKARN)",
+     "qty": 32,
+     "lines": 3
+    }
+   ],
+   "releaseTime": "2026-11-13T07:54:00.000Z"
+  },
+  {
+   "foId": "2100025111",
+   "plate": "72-6364",
+   "driver": "ทวีศักดิ์",
+   "mot": "10W Truck",
+   "carrier": "SIRIPRAKARN TRANSPORT AND SERVICE CO.,LTD.",
+   "route": "แหลมฉบัง",
+   "locationCode": "11103376",
+   "locationName": "TCFG COMPRESSOR (THAILAND) CO.,LTD",
+   "customers": [
+    "MITSUBISHI MOTORS (THAILAND) CO.,LTD.",
+    "M.M.T.H. ENGINE CO.,LTD.",
+    "MITSUBISHI MOTORS (THAILAND)CO.,LTD.",
+    "TCFG COMPRESSOR (THAILAND) CO.,LTD"
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913200784",
+     "deliveryNo": "8110031354",
+     "customer": "MITSUBISHI MOTORS (THAILAND) CO.,LTD.",
+     "qty": 1,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200785",
+     "deliveryNo": "8110031368",
+     "customer": "M.M.T.H. ENGINE CO.,LTD.",
+     "qty": 1,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200786",
+     "deliveryNo": "8110031369",
+     "customer": "M.M.T.H. ENGINE CO.,LTD.",
+     "qty": 2,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200787",
+     "deliveryNo": "8110031370",
+     "customer": "M.M.T.H. ENGINE CO.,LTD.",
+     "qty": 2,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200788",
+     "deliveryNo": "8110031355",
+     "customer": "MITSUBISHI MOTORS (THAILAND)CO.,LTD.",
+     "qty": 1,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200789",
+     "deliveryNo": "8110031356",
+     "customer": "MITSUBISHI MOTORS (THAILAND)CO.,LTD.",
+     "qty": 15,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913200790",
+     "deliveryNo": "8110031357",
+     "customer": "MITSUBISHI MOTORS (THAILAND)CO.,LTD.",
+     "qty": 16,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200791",
+     "deliveryNo": "8110031358",
+     "customer": "MITSUBISHI MOTORS (THAILAND)CO.,LTD.",
+     "qty": 1,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200792",
+     "deliveryNo": "8110031359",
+     "customer": "MITSUBISHI MOTORS (THAILAND)CO.,LTD.",
+     "qty": 1,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200793",
+     "deliveryNo": "8110031360",
+     "customer": "MITSUBISHI MOTORS (THAILAND)CO.,LTD.",
+     "qty": 2,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200794",
+     "deliveryNo": "8110031361",
+     "customer": "MITSUBISHI MOTORS (THAILAND)CO.,LTD.",
+     "qty": 2,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200795",
+     "deliveryNo": "8110031362",
+     "customer": "MITSUBISHI MOTORS (THAILAND)CO.,LTD.",
+     "qty": 2,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200796",
+     "deliveryNo": "8110031363",
+     "customer": "MITSUBISHI MOTORS (THAILAND)CO.,LTD.",
+     "qty": 1,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200797",
+     "deliveryNo": "8110031364",
+     "customer": "MITSUBISHI MOTORS (THAILAND)CO.,LTD.",
+     "qty": 1,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200798",
+     "deliveryNo": "8110031365",
+     "customer": "MITSUBISHI MOTORS (THAILAND)CO.,LTD.",
+     "qty": 1,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200799",
+     "deliveryNo": "8110031366",
+     "customer": "MITSUBISHI MOTORS (THAILAND)CO.,LTD.",
+     "qty": 1,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200800",
+     "deliveryNo": "8110031367",
+     "customer": "MITSUBISHI MOTORS (THAILAND)CO.,LTD.",
+     "qty": 2,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200801",
+     "deliveryNo": "8110031388",
+     "customer": "TCFG COMPRESSOR (THAILAND) CO.,LTD",
+     "qty": 1,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913200802",
+     "deliveryNo": "8110031389",
+     "customer": "TCFG COMPRESSOR (THAILAND) CO.,LTD",
+     "qty": 3,
+     "lines": 2
+    }
+   ],
+   "releaseTime": "2026-11-13T07:53:13.000Z"
+  },
+  {
+   "foId": "2100025110",
+   "plate": "73-2538",
+   "driver": "ประจวบ",
+   "mot": "6W Truck",
+   "carrier": "SIRIPRAKARN TRANSPORT AND SERVICE CO.,LTD.",
+   "route": "มาบตาพุฒ",
+   "locationCode": "11102715",
+   "locationName": "STARCORE COMPANY LIMITED",
+   "customers": [
+    "NS-SIAM UNITED STEEL CO.,LTD.",
+    "STARCORE COMPANY LIMITED"
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115166",
+     "deliveryNo": "8110031378",
+     "customer": "NS-SIAM UNITED STEEL CO.,LTD.",
+     "qty": 4,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913115172",
+     "deliveryNo": "8110031386",
+     "customer": "STARCORE COMPANY LIMITED",
+     "qty": 1,
+     "lines": 1
+    }
+   ],
+   "releaseTime": "2026-11-13T07:54:05.000Z"
+  },
+  {
+   "foId": "2100025109",
+   "plate": "73-3301",
+   "driver": "นายศักดิ์ดา  ธนดี",
+   "mot": "4W (3-3.6 Ton) Truck",
+   "carrier": "TANWASATAPORN TRANSPORT CO.,LTD.",
+   "route": "อีสเทิร์นซีบอร์ด",
+   "locationCode": "11102758",
+   "locationName": "YASUNAGA (THAILAND) CO.,LTD.",
+   "customers": [
+    "HANON SYSTEMS (THAILAND) CO.,LTD.",
+    "JTEKT AUTOMOTIVE (THAILAND) CO.,LTD.",
+    "SOMBOON FORGING TECHNOLOGY CO.,LTD.",
+    "YASUNAGA (THAILAND) CO.,LTD."
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115142",
+     "deliveryNo": "8110031339",
+     "customer": "HANON SYSTEMS (THAILAND) CO.,LTD.",
+     "qty": 1,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115143",
+     "deliveryNo": "8110031340",
+     "customer": "HANON SYSTEMS (THAILAND) CO.,LTD.",
+     "qty": 4,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913115149",
+     "deliveryNo": "8110031351",
+     "customer": "JTEKT AUTOMOTIVE (THAILAND) CO.,LTD.",
+     "qty": 8,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913115168",
+     "deliveryNo": "8110031423",
+     "customer": "SOMBOON FORGING TECHNOLOGY CO.,LTD.",
+     "qty": 42,
+     "lines": 6
+    },
+    {
+     "invoiceNo": "6913115199",
+     "deliveryNo": "8110031429",
+     "customer": "YASUNAGA (THAILAND) CO.,LTD.",
+     "qty": 4,
+     "lines": 1
+    }
+   ],
+   "releaseTime": "2026-11-13T06:49:32.000Z"
+  },
+  {
+   "foId": "2100025126",
+   "plate": "บต-8316",
+   "driver": "สุรพล",
+   "mot": "4W (2 Ton) Truck",
+   "carrier": "SIRIPRAKARN TRANSPORT AND SERVICE CO.,LTD.",
+   "route": "โรจนะ",
+   "locationCode": "11102596",
+   "locationName": "ASIAN PARTS MANUFACTURING CO.,LTD.",
+   "customers": [
+    "ASIAN PARTS MANUFACTURING CO.,LTD.",
+    "INOUE RUBBER (THAILAND) PUBLIC CO., LTD.(AYUTTHAYA)",
+    "YACHIYODA ALLOY WHEEL CO.,LTD."
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115133",
+     "deliveryNo": "8110031420",
+     "customer": "ASIAN PARTS MANUFACTURING CO.,LTD.",
+     "qty": 2,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115144",
+     "deliveryNo": "8110031343",
+     "customer": "INOUE RUBBER (THAILAND) PUBLIC CO., LTD.(AYUTTHAYA)",
+     "qty": 2,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913115206",
+     "deliveryNo": "8110031408",
+     "customer": "YACHIYODA ALLOY WHEEL CO.,LTD.",
+     "qty": 62,
+     "lines": 5
+    },
+    {
+     "invoiceNo": "6913115207",
+     "deliveryNo": "8110031463",
+     "customer": "YACHIYODA ALLOY WHEEL CO.,LTD.",
+     "qty": 25,
+     "lines": 2
+    }
+   ],
+   "releaseTime": "2026-11-13T06:59:19.000Z"
+  },
+  {
+   "foId": "2100025108",
+   "plate": "บร-4577",
+   "driver": "สุก",
+   "mot": "4W (1 Ton) Truck",
+   "carrier": "SIRIPRAKARN TRANSPORT AND SERVICE CO.,LTD.",
+   "route": "อมตะซิตี้",
+   "locationCode": "11102994",
+   "locationName": "KOWOO THAI CO.,LTD.",
+   "customers": [
+    "HOSEI BRAKE (THAILAND) CO.,LTD.",
+    "KOWOO THAI CO.,LTD.",
+    "NST WIRE AND WELDING (THAILAND) CO.,LTD.",
+    "THAI SUMMIT PK CORPORATION LTD.",
+    "YOROZU (THAILAND) CO.,LTD."
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115140",
+     "deliveryNo": "8110031342",
+     "customer": "HOSEI BRAKE (THAILAND) CO.,LTD.",
+     "qty": 14,
+     "lines": 11
+    },
+    {
+     "invoiceNo": "6913115151",
+     "deliveryNo": "8110031430",
+     "customer": "KOWOO THAI CO.,LTD.",
+     "qty": 6,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115178",
+     "deliveryNo": "8110031379",
+     "customer": "NST WIRE AND WELDING (THAILAND) CO.,LTD.",
+     "qty": 5,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115182",
+     "deliveryNo": "8110031395",
+     "customer": "THAI SUMMIT PK CORPORATION LTD.",
+     "qty": 5,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913115208",
+     "deliveryNo": "8110031409",
+     "customer": "YOROZU (THAILAND) CO.,LTD.",
+     "qty": 29,
+     "lines": 5
+    }
+   ],
+   "releaseTime": "2026-11-13T06:53:17.000Z"
+  },
+  {
+   "foId": "2100025112",
+   "plate": "บร-4577",
+   "driver": "สุก",
+   "mot": "4W (1 Ton) Truck",
+   "carrier": "SIRIPRAKARN TRANSPORT AND SERVICE CO.,LTD.",
+   "route": "แหลมฉบัง",
+   "locationCode": "11103395",
+   "locationName": "MITSUBISHI ELECTRIC SIAM COMPRESSOR INDUSTRY CO.,LTD.",
+   "customers": [
+    "ASTEMO CHONBURI MANUFACTURING LTD.",
+    "MITSUBISHI ELECTRIC SIAM COMPRESSOR INDUSTRY CO.,LTD."
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115131",
+     "deliveryNo": "8110031330",
+     "customer": "ASTEMO CHONBURI MANUFACTURING LTD.",
+     "qty": 3,
+     "lines": 3
+    },
+    {
+     "invoiceNo": "6913115154",
+     "deliveryNo": "8110031371",
+     "customer": "MITSUBISHI ELECTRIC SIAM COMPRESSOR INDUSTRY CO.,LTD.",
+     "qty": 22,
+     "lines": 3
+    },
+    {
+     "invoiceNo": "6913115155",
+     "deliveryNo": "8110031372",
+     "customer": "MITSUBISHI ELECTRIC SIAM COMPRESSOR INDUSTRY CO.,LTD.",
+     "qty": 14,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115156",
+     "deliveryNo": "8110031373",
+     "customer": "MITSUBISHI ELECTRIC SIAM COMPRESSOR INDUSTRY CO.,LTD.",
+     "qty": 1,
+     "lines": 1
+    }
+   ],
+   "releaseTime": "2026-11-13T06:53:21.000Z"
+  },
+  {
+   "foId": "2100025120",
+   "plate": "บล-133",
+   "driver": "อนันต์",
+   "mot": "4W (2 Ton) Truck",
+   "carrier": "SIRIPRAKARN TRANSPORT AND SERVICE CO.,LTD.",
+   "route": "สำโรง",
+   "locationCode": "11102545",
+   "locationName": "TIC MODULAR SYSTEM CO.,LTD.",
+   "customers": [
+    "HINO MOTORS MANUFACTURING (THAILAND) CO.,LTD.",
+    "LEE HYONG HUA STEEL CO.,LTD.",
+    "TIC MODULAR SYSTEM CO.,LTD."
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115141",
+     "deliveryNo": "8110031341",
+     "customer": "HINO MOTORS MANUFACTURING (THAILAND) CO.,LTD.",
+     "qty": 44,
+     "lines": 7
+    },
+    {
+     "invoiceNo": "6913115152",
+     "deliveryNo": "8110031352",
+     "customer": "LEE HYONG HUA STEEL CO.,LTD.",
+     "qty": 4,
+     "lines": 3
+    },
+    {
+     "invoiceNo": "6913115201",
+     "deliveryNo": "8110031413",
+     "customer": "TIC MODULAR SYSTEM CO.,LTD.",
+     "qty": 34,
+     "lines": 5
+    }
+   ],
+   "releaseTime": "2026-11-13T07:59:50.000Z"
+  },
+  {
+   "foId": "2100025117",
+   "plate": "บว 9361",
+   "driver": "นายเรืองรุจ  พูนแสวง",
+   "mot": "4W (2 Ton) Truck",
+   "carrier": "BLUE&WHITE PROFESSIONAL LOGISTICS",
+   "route": "สวนหลวง",
+   "locationCode": "11102481",
+   "locationName": "PAILIN LASER METAL CO.,LTD.",
+   "customers": [
+    "DEXTRA MANUFACTURING CO.,LTD.",
+    "LEECO KOGYO CO.,LTD.",
+    "PAILIN LASER METAL CO.,LTD.",
+    "TOHKAI METAL PRODUCTS CO.,LTD."
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115135",
+     "deliveryNo": "8110031334",
+     "customer": "DEXTRA MANUFACTURING CO.,LTD.",
+     "qty": 4,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115136",
+     "deliveryNo": "8110031335",
+     "customer": "DEXTRA MANUFACTURING CO.,LTD.",
+     "qty": 2,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115137",
+     "deliveryNo": "8110031336",
+     "customer": "DEXTRA MANUFACTURING CO.,LTD.",
+     "qty": 1,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115138",
+     "deliveryNo": "8110031337",
+     "customer": "DEXTRA MANUFACTURING CO.,LTD.",
+     "qty": 20,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913115153",
+     "deliveryNo": "8110031353",
+     "customer": "LEECO KOGYO CO.,LTD.",
+     "qty": 20,
+     "lines": 3
+    },
+    {
+     "invoiceNo": "6913115167",
+     "deliveryNo": "8110031411",
+     "customer": "PAILIN LASER METAL CO.,LTD.",
+     "qty": 30,
+     "lines": 7
+    },
+    {
+     "invoiceNo": "6913115203",
+     "deliveryNo": "8110031400",
+     "customer": "TOHKAI METAL PRODUCTS CO.,LTD.",
+     "qty": 10,
+     "lines": 4
+    }
+   ],
+   "releaseTime": "2026-11-13T08:31:45.000Z"
+  },
+  {
+   "foId": "2100025113",
+   "plate": "ผท-3236",
+   "driver": "วุฒิศักดิ์",
+   "mot": "4W (2 Ton) Truck",
+   "carrier": "SIRIPRAKARN TRANSPORT AND SERVICE CO.,LTD.",
+   "route": "อมตะนคร(ชลบุรี)",
+   "locationCode": "11102719",
+   "locationName": "HINO MOTORS MANUFACTURING(THAILAND) CO.,LTD. (FAC-3 AMATA)",
+   "customers": [
+    "HINO MOTORS MANUFACTURING(THAILAND) CO.,LTD. (FAC-3 AMATA)",
+    "THAI SUMMIT PKK BANGPAKONGCO., LTD.",
+    "THAI SUMMIT ENGINEERING CO.,LTD",
+    "TOYOTA BOSHOKU SIAM METAL CO.,LTD."
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115157",
+     "deliveryNo": "8110031419",
+     "customer": "HINO MOTORS MANUFACTURING(THAILAND) CO.,LTD. (FAC-3 AMATA)",
+     "qty": 51,
+     "lines": 9
+    },
+    {
+     "invoiceNo": "6913115180",
+     "deliveryNo": "8110031393",
+     "customer": "THAI SUMMIT PKK BANGPAKONGCO., LTD.",
+     "qty": 2,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115181",
+     "deliveryNo": "8110031394",
+     "customer": "THAI SUMMIT PKK BANGPAKONGCO., LTD.",
+     "qty": 4,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115183",
+     "deliveryNo": "8110031392",
+     "customer": "THAI SUMMIT ENGINEERING CO.,LTD",
+     "qty": 3,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115200",
+     "deliveryNo": "8110031414",
+     "customer": "TOYOTA BOSHOKU SIAM METAL CO.,LTD.",
+     "qty": 3,
+     "lines": 2
+    }
+   ],
+   "releaseTime": "2026-11-13T07:53:34.000Z"
+  },
+  {
+   "foId": "2100025115",
+   "plate": "ผท-3236",
+   "driver": "วุฒิศักดิ์",
+   "mot": "4W (2 Ton) Truck",
+   "carrier": "SIRIPRAKARN TRANSPORT AND SERVICE CO.,LTD.",
+   "route": "เวลโกร์",
+   "locationCode": "11102383",
+   "locationName": "THAI SANEI CO., LTD.(CHACHOENGSAO)",
+   "customers": [
+    "NISSAN MOTOR (THAILAND) CO., LTD.",
+    "THAISIN METAL INDUSTRIES CO.,LTD.",
+    "TMBP CO.,LTD.",
+    "THAI SANEI CO., LTD.(CHACHOENGSAO)"
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115163",
+     "deliveryNo": "8110031377",
+     "customer": "NISSAN MOTOR (THAILAND) CO., LTD.",
+     "qty": 2,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115184",
+     "deliveryNo": "8110031415",
+     "customer": "THAISIN METAL INDUSTRIES CO.,LTD.",
+     "qty": 60,
+     "lines": 3
+    },
+    {
+     "invoiceNo": "6913115196",
+     "deliveryNo": "8110031399",
+     "customer": "TMBP CO.,LTD.",
+     "qty": 10,
+     "lines": 1
+    },
+    {
+     "invoiceNo": "6913115202",
+     "deliveryNo": "8110031426",
+     "customer": "THAI SANEI CO., LTD.(CHACHOENGSAO)",
+     "qty": 6,
+     "lines": 2
+    }
+   ],
+   "releaseTime": "2026-11-13T07:53:30.000Z"
+  },
+  {
+   "foId": "2100025107",
+   "plate": "ยข-1520",
+   "driver": "นพดล",
+   "mot": "4W (2 Ton) Truck",
+   "carrier": "SIRIPRAKARN TRANSPORT AND SERVICE CO.,LTD.",
+   "route": "ระยอง",
+   "locationCode": "11103193",
+   "locationName": "ALPHA COATING SOLUTION CO.,LTD.",
+   "customers": [
+    "ALPHA COATING SOLUTION CO.,LTD.",
+    "GUNMA SEIKO (THAILAND) CO.,LTD.",
+    "NIPPON STEEL PIPE (THAILAND) CO.,LTD.",
+    "SOMBOON SOMIC MANUFACTURING CO.,LTD."
+   ],
+   "docs": [
+    {
+     "invoiceNo": "6913115132",
+     "deliveryNo": "8110031410",
+     "customer": "ALPHA COATING SOLUTION CO.,LTD.",
+     "qty": 8,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913115139",
+     "deliveryNo": "8110031338",
+     "customer": "GUNMA SEIKO (THAILAND) CO.,LTD.",
+     "qty": 20,
+     "lines": 5
+    },
+    {
+     "invoiceNo": "6913115158",
+     "deliveryNo": "8110031375",
+     "customer": "NIPPON STEEL PIPE (THAILAND) CO.,LTD.",
+     "qty": 7,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913115159",
+     "deliveryNo": "8110031421",
+     "customer": "NIPPON STEEL PIPE (THAILAND) CO.,LTD.",
+     "qty": 36,
+     "lines": 9
+    },
+    {
+     "invoiceNo": "6913115160",
+     "deliveryNo": "8110031376",
+     "customer": "NIPPON STEEL PIPE (THAILAND) CO.,LTD.",
+     "qty": 14,
+     "lines": 2
+    },
+    {
+     "invoiceNo": "6913115171",
+     "deliveryNo": "8110031385",
+     "customer": "SOMBOON SOMIC MANUFACTURING CO.,LTD.",
+     "qty": 21,
+     "lines": 4
+    }
+   ],
+   "releaseTime": "2026-11-13T07:54:09.000Z"
+  }
+ ]
+}

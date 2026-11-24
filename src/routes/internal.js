@@ -2,130 +2,104 @@
 // The Flutter dashboard is the only client. Nothing on the internet may reach it.
 
 import { Router } from 'express';
-import { internalDb, resetAll, driversForRelay } from '../db.js';
-import { UPSTREAM_MOCK, todayISO } from '../seed.js';
-import { tripStatus, isActive, STOP_STATUS } from '../logic/state.js';
+import { fetchDeliveries } from '../soi8/client.js';
+import { overviewSteps } from '../soi8/overview.js';
+import { today } from '../geofence/today.js';
+import { buildTrips } from '../plan/trips.js';
+import { listMaster, updateMaster, RADIUS_MIN, RADIUS_MAX } from '../master/store.js';
 
 export const internalRouter = Router();
 
-function stopsByTrip() {
-  const map = new Map();
-  for (const s of internalDb.stops.values()) {
-    if (!map.has(s.tripId)) map.set(s.tripId, []);
-    map.get(s.tripId).push(s);
-  }
-  for (const list of map.values()) {
-    list.sort((a, b) => {
-      // Visited stops first in the order the driver actually took them,
-      // then the untouched ones in planned order.
-      if (a.visitOrder && b.visitOrder) return a.visitOrder - b.visitOrder;
-      if (a.visitOrder) return -1;
-      if (b.visitOrder) return 1;
-      return a.plannedSeq - b.plannedSeq;
-    });
-  }
-  return map;
+/** YYYY-MM-DD in Bangkok time. */
+function todayISO(d = new Date()) {
+  const local = new Date(d.getTime() + 7 * 3600_000);
+  return local.toISOString().slice(0, 10);
 }
 
-/** The plan hand-off the sync worker pushes to the relay every few minutes. */
-internalRouter.get('/plan', async (req, res) => {
-  const date = req.query.date ?? internalDb.date;
-  if (date !== internalDb.date) return res.json({ date, trips: [], stops: [], drivers: [] });
-  res.json({
-    date,
-    // Hashed, never the clear PIN - the relay has no business knowing it.
-    drivers: await driversForRelay(),
-    trips: internalDb.trips,
-    stops: [...internalDb.stops.values()].map((s) => ({
-      stopId: s.stopId,
-      tripId: s.tripId,
-      plannedSeq: s.plannedSeq,
-      customerCode: s.customerCode,
-      customerName: s.customerName,
-      address: s.address,
-      lat: s.lat,
-      lng: s.lng,
-      docs: s.docs,
-      totalQty: s.totalQty,
-    })),
-  });
-});
+// The 3D overview shows real data from the SOI8 Delivery Final Inspection API
+// and nothing else: if SOI8 cannot answer, this endpoint fails (502) and the
+// page says so — it never substitutes made-up numbers.
 
-/** The five pipeline tiles. Steps 1..4-1 are mocked; 4-2 is computed live. */
-internalRouter.get('/dashboard', (req, res) => {
-  const date = req.query.date ?? internalDb.date;
-  const isToday = date === internalDb.date;
+// SOI8 reads SAP on every call; every open screen (3D and card view alike)
+// shares one call per window and date.
+const SOI8_CACHE_MS = Number(process.env.SOI8_CACHE_MS ?? 20_000);
+const soi8Cache = new Map(); // date -> { at, rows }
+const SOI8_CACHE_DAYS = 4; // today plus a few days someone paged back to
 
-  const byTrip = stopsByTrip();
-  let finished = 0;
-  let inprocess = 0;
-  let waiting = 0;
+async function soi8Rows(date) {
+  const hit = soi8Cache.get(date);
+  if (hit && Date.now() - hit.at < SOI8_CACHE_MS) return hit.rows;
+  const rows = await fetchDeliveries(date);
+  soi8Cache.delete(date);
+  soi8Cache.set(date, { at: Date.now(), rows });
+  while (soi8Cache.size > SOI8_CACHE_DAYS) soi8Cache.delete(soi8Cache.keys().next().value);
+  return rows;
+}
 
-  if (isToday) {
-    for (const trip of internalDb.trips) {
-      switch (tripStatus(byTrip.get(trip.tripId) ?? [])) {
-        case 'finished': finished++; break;
-        case 'inprocess': inprocess++; break;
-        default: waiting++;
-      }
-    }
+const isDate = (s) => /^\d{4}-\d{2}-\d{2}$/.test(s);
+
+/** The five pipeline stations of the 3D overview — real SOI8 numbers only. */
+internalRouter.get('/dashboard', async (req, res) => {
+  const date = String(req.query.date ?? todayISO());
+  if (!isDate(date)) return res.status(400).json({ error: 'BAD_DATE', message: 'date ต้องเป็น YYYY-MM-DD' });
+  try {
+    const steps = overviewSteps(await soi8Rows(date));
+    res.json({ date, generatedAt: new Date().toISOString(), source: 'soi8', steps });
+  } catch (e) {
+    res.status(502).json({ error: 'SOI8', message: e.message });
   }
+});
 
-  const total = isToday ? internalDb.trips.length : 0;
-  const step42 = {
-    key: 'step42',
-    step: 'STEP 4-2',
-    label: 'Truck delivery',
-    sub: 'ส่งของขึ้นรถไปหาลูกค้า',
-    unit: 'TRUCKS',
-    total,
-    finished,
-    inprocess,
-    waiting,
-    note: finished > 0 ? `${finished} trucks already back at TP` : null,
-    live: true,
-  };
+/**
+ * The raw SOI8 delivery rows for one day — what the card-style Overview
+ * (copied from SOI8's P01 page) counts and lists itself.
+ */
+internalRouter.get('/deliveries', async (req, res) => {
+  const date = String(req.query.date ?? todayISO());
+  if (!isDate(date)) return res.status(400).json({ error: 'BAD_DATE', message: 'date ต้องเป็น YYYY-MM-DD' });
+  try {
+    const rows = await soi8Rows(date);
+    res.json({ date, generatedAt: new Date().toISOString(), source: 'soi8', rows });
+  } catch (e) {
+    res.status(502).json({ error: 'SOI8', message: e.message });
+  }
+});
 
+/**
+ * The trips page: one trip per FO of the plan day (a real day of
+ * SOI8_DEL_FNISP_DATA, mot_name <> 'customer'), with stop states from today's
+ * geofence — the same result the GPS page's customer tab shows.
+ */
+internalRouter.get('/trips', async (_req, res) => {
+  try {
+    const t = await today();
+    const { planDay, trips } = buildTrips(t);
+    res.json({ date: todayISO(), planDay, source: t.source, dwellMinutes: t.dwellMinutes, trips });
+  } catch (e) {
+    res.status(500).json({ error: 'INTERNAL', message: e.message });
+  }
+});
+
+// ── customer master ─────────────────────────────────────────────────────────
+
+/** GET /master/customers — every delivery location with position and radius. */
+internalRouter.get('/master/customers', (_req, res) => {
   res.json({
-    date,
-    generatedAt: new Date().toISOString(),
-    steps: [UPSTREAM_MOCK.step1, UPSTREAM_MOCK.step2, UPSTREAM_MOCK.step3, UPSTREAM_MOCK.step41, step42],
+    source:
+      'SOI8_DEL_FNISP_DATA (mot_name <> customer, read-only) · ตำแหน่งจาก OpenStreetMap (ODbL)',
+    radiusMin: RADIUS_MIN,
+    radiusMax: RADIUS_MAX,
+    customers: listMaster(),
   });
 });
 
-/** Drill-down under the STEP 4-2 tile. */
-internalRouter.get('/trips', (req, res) => {
-  const date = req.query.date ?? internalDb.date;
-  if (date !== internalDb.date) return res.json({ date, trips: [] });
-
-  const byTrip = stopsByTrip();
-  const driverName = new Map(internalDb.drivers.map((d) => [d.driverCode, d.name]));
-
-  const trips = internalDb.trips.map((t) => {
-    const stops = byTrip.get(t.tripId) ?? [];
-    const active = stops.find(isActive);
-    return {
-      ...t,
-      driverName: driverName.get(t.driverCode) ?? t.driverCode,
-      status: tripStatus(stops),
-      stopCount: stops.length,
-      doneCount: stops.filter((s) => s.status === STOP_STATUS.DONE).length,
-      currentStop: active ? { customerName: active.customerName, status: active.status } : null,
-      stops,
-    };
-  });
-
-  const order = { inprocess: 0, waiting: 1, finished: 2 };
-  trips.sort((a, b) => order[a.status] - order[b.status] || a.truckNo.localeCompare(b.truckNo));
-  res.json({ date, trips });
-});
-
-/** Proof that the internal side only ever dials outward. */
-internalRouter.get('/sync-log', (_req, res) => {
-  res.json({ cursor: internalDb.relayCursor, entries: internalDb.syncLog.slice(-40).reverse() });
-});
-
-internalRouter.post('/reset', async (_req, res) => {
-  await resetAll();
-  res.json({ ok: true, date: internalDb.date, today: todayISO() });
+/** PATCH /master/customers/:code — { radiusM?, lat?, lng? } */
+internalRouter.patch('/master/customers/:code', (req, res) => {
+  try {
+    const c = updateMaster(req.params.code, req.body ?? {});
+    if (!c) return res.status(404).json({ error: 'NOT_FOUND', message: 'ไม่พบลูกค้ารหัสนี้' });
+    res.json({ customer: c });
+  } catch (e) {
+    res.status(400).json({ error: 'BAD_VALUE', message: e.message });
+  }
 });
