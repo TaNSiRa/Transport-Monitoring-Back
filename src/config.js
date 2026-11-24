@@ -7,7 +7,7 @@
 //
 // There are no defaults in code: a missing key stops the server at start-up
 // with the list of what to add, instead of quietly running on some other
-// machine's address. The full list with comments is in .env.example.
+// machine's address. .env is not in git — each machine keeps its own.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -82,7 +82,7 @@ export const config = {
 };
 
 if (problems.length) {
-  const where = envFileFound ? ENV_FILE : `${ENV_FILE} (ไม่พบไฟล์ — cp .env.example .env)`;
+  const where = envFileFound ? ENV_FILE : `${ENV_FILE} (ไม่พบไฟล์ — สร้างใหม่ตามรายการด้านล่าง)`;
   console.error(`\n  ตั้งค่า backend ไม่ครบ — แก้ใน ${where}\n`);
   for (const p of problems) console.error(`   • ${p}`);
   console.error('');
