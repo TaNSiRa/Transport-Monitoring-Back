@@ -64,7 +64,7 @@ export function updateMaster(code, { radiusM, lat, lng } = {}) {
     const ln = Number(lng);
     // Thailand's bounding box, give or take — catches swapped lat/lng.
     if (!(la > 5 && la < 21 && ln > 97 && ln < 106)) {
-      throw new RangeError('ตำแหน่งต้องอยู่ในประเทศไทย (ตรวจว่าไม่ได้สลับ lat/lng)');
+      throw new RangeError('ตำแหน่งที่เลือกอยู่นอกประเทศไทย กรุณาเลือกใหม่บนแผนที่');
     }
     c.lat = Number(la.toFixed(6));
     c.lng = Number(ln.toFixed(6));
